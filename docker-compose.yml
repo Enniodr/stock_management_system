@@ -1,0 +1,29 @@
+version: "3.2"
+
+services:
+  api:
+    container_name: api
+    build: ./api
+    environment:
+      # PG_CONNECTION_STRING: postgres://example:example@store:5432/test
+      POSTGRES_PASSWORD: 
+      POSTGRES_USER: 
+      POSTGRES_DB: 
+      POSTGRES_HOST: db
+
+    ports:
+      - 3000:3000
+    volumes:
+      - ./api/src:/usr/app/api/src
+
+
+  db:
+    container_name: store   
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: 
+      POSTGRES_USER: 
+      POSTGRES_DB: 
+    ports:
+      - 5432:5432
